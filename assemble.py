@@ -32,7 +32,7 @@ def yt_download(pl_id, url):
 
         try:
             metadata = ydl.extract_info(url, download=False)
-            fname = yt_fmt % metadata
+            fname = (yt_fmt % metadata).replace('/', '_')
             if os.path.exists(os.path.join(pl_id, fname)):
                 print 'Already using a file of that name!'
                 return None
@@ -60,7 +60,8 @@ def main():
         pl_id = raw_input('Enter playlist identifier (no spaces or special chars): ')
 
     if os.path.exists(pl_id):
-        with open(os.path.join(pl_id, 'manifest.json')) as f:
+        with open(os.path.join(pl_id, 'manifest.js')) as f:
+            f.read(len('var playlist_data = '))
             playlist = json.load(f)
         print 'Resuming playlist "%s"' % playlist['name']
     else:
@@ -152,7 +153,8 @@ def main():
             pass
 
         # save in-progress list...
-        with open(os.path.join(pl_id, 'manifest.json'), 'w') as fp:
+        with open(os.path.join(pl_id, 'manifest.js'), 'w') as fp:
+            f.write('var playlist_data = ')
             json.dump(playlist, fp, sort_keys=True, indent=4, separators=(',', ': '))
 
         choice = ''
