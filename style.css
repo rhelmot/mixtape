@@ -48,7 +48,7 @@ h1 {
 
 #arrow-left.active, #arrow-right.active {
 	color: #000;
-    cursor: pointer;
+	cursor: pointer;
 }
 
 #arrow-left.active:hover, #arrow-right.active:hover {
@@ -59,3 +59,9 @@ h1 {
 	width: 300px;
 }
 
+#footer {
+	position: fixed;
+	right: 10px;
+	bottom: 10px;
+	text-align: right;
+}

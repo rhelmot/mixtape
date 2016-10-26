@@ -26,7 +26,6 @@ If at any point the creation process gets interrupted, you can pick up where you
 
 ## TODOs
 
-- Link the license from index.html, incl. the jquery license
 - Add "download all" functionality
 - Make the webpage look better on mobile
 - Add keyboard shortcuts
