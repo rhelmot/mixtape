@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import os
+import sys
 import youtube_dl
 import requests
 import shutil
@@ -147,15 +148,17 @@ def main():
                     fname = os.path.basename(url)
 
             track['file'] = fname
+            if sys.platform != 'win32':
+                os.chmod(os.path.join(pl_id, fname), 0664)
 
             playlist['tracks'].append(track)
         except KeyboardInterrupt:
             pass
 
         # save in-progress list...
-        with open(os.path.join(pl_id, 'manifest.js'), 'w') as fp:
+        with open(os.path.join(pl_id, 'manifest.js'), 'w') as f:
             f.write('var playlist_data = ')
-            json.dump(playlist, fp, sort_keys=True, indent=4, separators=(',', ': '))
+            json.dump(playlist, f, sort_keys=True, indent=4, separators=(',', ': '))
 
         choice = ''
         while choice not in ('y', 'n'):
