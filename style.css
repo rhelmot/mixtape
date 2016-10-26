@@ -1,0 +1,61 @@
+body {
+	font-family: sans-serif;
+}
+
+h1 {
+	font-size: 80px;
+}
+
+#app {
+	display: none;
+}
+
+#load {
+	text-align: center;
+}
+
+#load form {
+	margin: 0;
+}
+
+#load, #player, #description {
+	margin: 30px auto;
+	background: #eee;
+	padding: 10px;
+}
+
+#load, #player {
+	width: 400px;
+}
+
+#description {
+	width: 600px;
+}
+
+#player {
+	text-align: center;
+}
+
+#arrow-left, #audio, #arrow-right {
+	display: inline-block;
+}
+
+#arrow-left, #arrow-right {
+	font-size: 30px;
+	width: 40px;
+	color: #888;
+}
+
+#arrow-left.active, #arrow-right.active {
+	color: #000;
+    cursor: pointer;
+}
+
+#arrow-left.active:hover, #arrow-right.active:hover {
+	background: #ddd;
+}
+
+#audio {
+	width: 300px;
+}
+

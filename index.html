@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script src="script.js"></script>
+
+		<link rel="stylesheet" href="style.css">
+	</head>
+
+	<body>
+		<div id="load">
+			<form id="load_form">
+				<input id="load_name"> <button id="load_submit" type="submit">Open playlist</button>
+			</form>
+		</div>
+
+		<div id="app">
+			<h1 id="title">Loading</h1>
+
+			<div id="player">
+				<h3 id="tracktitle">Track title</h3>
+				<h4 id="trackartist">Track artist</h3>
+				<div>
+					<div id="arrow-left"><span class="vmiddle">&laquo;</span></div>
+                    <div id="audio"><audio id="goodstuff" controls autoplay></audio></div>
+					<div id="arrow-right"><span class="vmiddle">&raquo;</span></div>
+				</div>
+				<label><input id="autoplay" type="checkbox" checked> Autoplay</label>
+			</div>
+
+			<div id="description">Some weirdo description. Maybe emotional, maybe silly, maybe a wholehearted deflection of the point for fear of being called out on being too clingy to exist in this universe</div>
+		</div>
+	</body>
+</html>
