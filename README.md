@@ -10,7 +10,8 @@ That's what I did, at least.
 
 ## Web interface
 
-`index.html`, `script.js`, and `style.css` should be dumped into a folder somehwere on some webserver. That's all you need to get started.
+`index.html`, `script.js`, and `style.css` should be dumped into a folder somewhere on some webserver. That's all you need to get started.
+If you want to, the webpage works fine just opening `index.html` in a web browser from your filesystem.
 Then, in order to make playlists usable from it, you just put a playlist folder into the same folder as `index.html`.
 How do you make a playlist folder? That's what `assemble.py` does.
 Run it and it'll walk you through putting together the playlist, letting you enter metadata for the song and then chosing a source for the audio file, which can be anything from picking a local file to automatically finding the song on youtube for you.
