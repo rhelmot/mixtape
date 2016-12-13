@@ -26,14 +26,14 @@ def yt_search(query):
 
 def yt_download(pl_id, url):
     with youtube_dl.YoutubeDL({
-        'format': 'bestaudio',
+        'format': 'mp3/ogg/bestaudio',
         'noplaylist': True,
         'outtmpl': os.path.join(pl_id, yt_fmt)
         }) as ydl:
 
         try:
             metadata = ydl.extract_info(url, download=False)
-            fname = (yt_fmt % metadata).replace('/', '_')
+            fname = (yt_fmt % metadata).replace('/', '_').replace('?','').replace('"', "'").replace(':', ' -')
             if os.path.exists(os.path.join(pl_id, fname)):
                 print 'Already using a file of that name!'
                 return None
