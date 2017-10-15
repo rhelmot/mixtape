@@ -37,8 +37,9 @@ function play_track(n) {
 	current_track = n;
 	set_url();
 	var track = playlist_data.tracks[n];
-	$('#tracktitle').text(track.name);
+	$('#tracktitle').text(track.title || track.name);
 	$('#trackartist').text(track.artist);
+	$('#trackalbum').text(track.album || 'Unknown album');
 	var paragraphs = track.description.split('\n\n');
 	var descr = $('#description')[0];
 	descr.innerHTML = '<p><em>' + (n+1).toString() + '/' + playlist_data.tracks.length.toString() + '</em></p>';
@@ -70,6 +71,9 @@ function start() {
 	$('#load').css('display', 'none');
 	$('#app').css('display', 'block');
 	$('#title').text(playlist_data.name);
+	$('#download').click(function() {
+		location.href = dir_url + '/' + encodeURIComponent(playlist_name) + '/playlist.zip';
+	});
 	play_track(current_track);
 }
 
