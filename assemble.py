@@ -70,9 +70,9 @@ class Playlist(object):
             try:
                 if not self.menu():
                     break
+                self.finalize()
             except KeyboardInterrupt:
                 pass
-
         self.finalize()
 
     def menu(self):
@@ -199,7 +199,7 @@ class Track(object):
             if self.title is None and meta.tag.title is not None:
                 self.title = meta.tag.title.encode('utf-8')
             if self.artist is None and meta.tag.artist is not None:
-                self.artist = meta.tag.title.encode('utf-8')
+                self.artist = meta.tag.artist.encode('utf-8')
             if self.album is None and meta.tag.album is not None:
                 self.album = meta.tag.album.encode('utf-8')
 
@@ -365,10 +365,14 @@ def yt_download(url):
             raise KeyboardInterrupt
 
 def convert_audio(in_fname, out_fname):
+    out = True
     if subprocess.call(['ffmpeg', '-i', in_fname, out_fname]) != 0:
         print 'Conversion failed...'
-        return False
-    return True
+        out = False
+
+    if in_fname == TMP_FILE:
+        os.unlink(TMP_FILE)
+    return out
 
 def validate_playlist_id(s):
     if len(s) == 0:
