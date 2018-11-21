@@ -131,6 +131,14 @@ class Playlist(object):
         self.save_manifest()
         self.save_zip()
 
+    def add_file(self, fname):
+        track = Track(p, None, None, None)
+        track.apply_audio(fname)
+        track.extract_metadata()
+        print fname
+        track.menu_fill_metadata()
+        self.tracks.append(track)
+
 
 class Track(object):
     def __init__(self, playlist, title, artist, fname, album=None, description=''):
@@ -365,8 +373,12 @@ def yt_download(url):
             raise KeyboardInterrupt
 
 def convert_audio(in_fname, out_fname):
+    if in_fname.endswith('.mp3'):
+        subprocess.check_call(['mv', in_fname, out_fname])
+        return True
+
     out = True
-    if subprocess.call(['ffmpeg', '-i', in_fname, out_fname]) != 0:
+    if subprocess.call(['ffmpeg', '-i', in_fname, '-max_muxing_queue_size', '10000', out_fname]) != 0:
         print 'Conversion failed...'
         out = False
 
